@@ -29,6 +29,10 @@
                 </div>
         <script>
             var deck = []
+            var utter =  new SpeechSynthesisUtterance("");
+            utter.rate = .80
+            utter.lang = 'en-US'
+            
             function getRandomInt() {
                 return Math.floor(Math.random() * 2048);
             }
@@ -58,10 +62,9 @@
                 }
                 var o = deck.pop()
                 var t = document.getElementById("TheThing")
-                var msg = new SpeechSynthesisUtterance(getRandomPretext()+ o.shapeText);
-                msg.rate = .80
-                msg.lang = 'en-US'
-                window.speechSynthesis.speak(msg);
+                utter.text = getRandomPretext()+ o.shapeText
+
+                window.speechSynthesis.speak(utter);
                 t.style.backgroundColor = o.color
             }
             
