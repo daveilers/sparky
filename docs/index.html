@@ -33,9 +33,6 @@
             utter.rate = .80
             utter.lang = 'en-US'
             
-            function getRandomInt() {
-                return Math.floor(Math.random() * 2048);
-            }
             function getRandomIntN(max) {
                 return Math.floor(Math.random() * max) ;
             }
@@ -47,15 +44,26 @@
             var shapes = ["■","▲","●","♥","★"]
             var shapeTexts = ["square","triangle","circle","heart","star"]
             var preTexts = ["How about a ", "Can you find a ",  "Get a ", "Take a ", "O, can you spot a  "]
-            function newDeck() {
-                var tempDeck = []
-                for (var c = 0; c < colors.length ; c++ ){
-                    for (var s = 0; s < shapes.length ; s ++ ){
-                        tempDeck[getRandomInt()] =  {"color":colors[c],"shape":shapes[s], "shapeText":shapeTexts[s]}
-                    }
-                }
-                deck = tempDeck.filter(word => word !== undefined);
+            function shuffle(a) {
+            var j, x, i;
+            for (i = a.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                x = a[i];
+                a[i] = a[j];
+                a[j] = x;
             }
+            return a;
+        }
+        function newDeck() {
+            var tempDeck = []
+            for (var c = 0; c < colors.length; c++) {
+                for (var s = 0; s < shapes.length; s++) {
+                    tempDeck.push({ "color": colors[c], "shape": shapes[s], "shapeText": shapeTexts[s] })
+                }
+            }
+            shuffle(tempDeck)
+            deck = tempDeck
+        }
             function next(){
                 if (deck.length == 0) {
                     newDeck()
