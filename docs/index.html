@@ -1,50 +1,54 @@
 <html>
-    <head>
-        <title>Sparky</title>
-        <meta name="apple-mobile-web-app-title" content="Sparky">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-    </head>
-    <body>
-        <style>
-            #TheThing{
-                height: 100vh;
-                width: 100vw;
-                text-align: center;
-                position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-            }
-            #TheThing svg{
-                height: 100%;
-                width: 100%;
-            }            
-        </style>
-        <div id="TheThing" onclick="next()">
-                <?xml version="1.0"?>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M 8 2 C 8 3.0318506 8.4777024 4.5034945 9.71875 5.34375 C 9.6375011 5.6214487 9.59375 5.894812 9.59375 6.1875 C 9.59375 7.8170055 10.642868 7.994962 11.9375 8 C 11.45327 8 11.008205 8.3334187 10.65625 8.875 L 7 6.4375 L 7 3 L 5 3 L 5 7 L 5 7.53125 L 5.4375 7.84375 L 8.6875 10 L 2 10 L 2 12 L 8.84375 12 L 5.6875 13.0625 L 5 13.28125 L 5 14 L 5 22 L 7 22 L 7 14.71875 L 10.0625 13.6875 C 10.117445 13.91645 10.205726 14.109651 10.28125 14.3125 C 9.2167955 14.724606 8.5 15.52363 8.5 16.65625 C 8.5 18.31325 10.0045 22 11.9375 22 C 13.8705 22 15.5 18.31325 15.5 16.65625 C 15.5 15.52363 14.721983 14.724606 13.625 14.3125 C 13.69902 14.109222 13.758797 13.885049 13.8125 13.65625 L 17 14.71875 L 17 22 L 19 22 L 19 14 L 19 13.28125 L 18.3125 13.0625 L 15.125 12 L 22 12 L 22 10 L 15.3125 10 L 18.5625 7.84375 L 19 7.53125 L 19 7 L 19 3 L 17 3 L 17 6.4375 L 13.25 8.9375 C 12.907309 8.3840341 12.477522 8.0274125 12 8 C 13.325 8 14.40625 7.8445 14.40625 6.1875 C 14.40625 5.9047248 14.355669 5.644033 14.28125 5.375 C 15.553966 4.5357666 16 3.03125 16 2 C 16 2.5199732 15.026753 3.659439 13.84375 4.375 C 13.336423 3.5688352 12.576515 3 12 3 C 11.448158 3 10.70274 3.5688352 10.1875 4.375 C 8.9913012 3.6575694 8 2.5141038 8 2 z"/>
-                </svg>
-                </div>
-        <script>
-            var deck = []
-            var utter =  new SpeechSynthesisUtterance("");
-            utter.rate = .80
-            utter.lang = 'en-US'
-            
-            function getRandomIntN(max) {
-                return Math.floor(Math.random() * max) ;
-            }
-            function getRandomPretext() {
-                return preTexts[ getRandomIntN(preTexts.length)]
-            }
 
-            var colors = ["#f44336","#c18afd","#3bc6fb","yellow","#4caf50"]
-            var shapes = ["■","▲","●","♥","★"]
-            var shapeTexts = ["square","triangle","circle","heart","star"]
-            var preTexts = ["How about a ", "Can you find a ",  "Get a ", "Take a ", "O, can you spot a  "]
-            function shuffle(a) {
+<head>
+    <title>Sparky</title>
+    <meta name="apple-mobile-web-app-title" content="Sparky">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+    <style>
+        #TheThing {
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        #TheThing svg {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <div id="TheThing" onclick="next()">
+        <?xml version="1.0"?>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M 8 2 C 8 3.0318506 8.4777024 4.5034945 9.71875 5.34375 C 9.6375011 5.6214487 9.59375 5.894812 9.59375 6.1875 C 9.59375 7.8170055 10.642868 7.994962 11.9375 8 C 11.45327 8 11.008205 8.3334187 10.65625 8.875 L 7 6.4375 L 7 3 L 5 3 L 5 7 L 5 7.53125 L 5.4375 7.84375 L 8.6875 10 L 2 10 L 2 12 L 8.84375 12 L 5.6875 13.0625 L 5 13.28125 L 5 14 L 5 22 L 7 22 L 7 14.71875 L 10.0625 13.6875 C 10.117445 13.91645 10.205726 14.109651 10.28125 14.3125 C 9.2167955 14.724606 8.5 15.52363 8.5 16.65625 C 8.5 18.31325 10.0045 22 11.9375 22 C 13.8705 22 15.5 18.31325 15.5 16.65625 C 15.5 15.52363 14.721983 14.724606 13.625 14.3125 C 13.69902 14.109222 13.758797 13.885049 13.8125 13.65625 L 17 14.71875 L 17 22 L 19 22 L 19 14 L 19 13.28125 L 18.3125 13.0625 L 15.125 12 L 22 12 L 22 10 L 15.3125 10 L 18.5625 7.84375 L 19 7.53125 L 19 7 L 19 3 L 17 3 L 17 6.4375 L 13.25 8.9375 C 12.907309 8.3840341 12.477522 8.0274125 12 8 C 13.325 8 14.40625 7.8445 14.40625 6.1875 C 14.40625 5.9047248 14.355669 5.644033 14.28125 5.375 C 15.553966 4.5357666 16 3.03125 16 2 C 16 2.5199732 15.026753 3.659439 13.84375 4.375 C 13.336423 3.5688352 12.576515 3 12 3 C 11.448158 3 10.70274 3.5688352 10.1875 4.375 C 8.9913012 3.6575694 8 2.5141038 8 2 z"
+            />
+        </svg>
+    </div>
+    <script>
+        var deck = []
+        var utter = new SpeechSynthesisUtterance("");
+        utter.rate = .80
+        utter.lang = 'en-US'
+
+        function getRandomIntN(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function getRandomPretext() {
+            return preTexts[getRandomIntN(preTexts.length)]
+        }
+
+        var colors = ["#f44336", "#c18afd", "#3bc6fb", "yellow", "#4caf50"]
+        var shapes = ["■", "▲", "●", "♥", "★"]
+        var shapeTexts = ["square", "triangle", "circle", "heart", "star"]
+        var preTexts = ["How about a ", "Can you find a ", "Get a ", "Take a ", "O, can you spot a  "]
+        function shuffle(a) {
             var j, x, i;
             for (i = a.length - 1; i > 0; i--) {
                 j = Math.floor(Math.random() * (i + 1));
@@ -64,18 +68,19 @@
             shuffle(tempDeck)
             deck = tempDeck
         }
-            function next(){
-                if (deck.length == 0) {
-                    newDeck()
-                }
-                var o = deck.pop()
-                var t = document.getElementById("TheThing")
-                utter.text = getRandomPretext()+ o.shapeText
-
-                window.speechSynthesis.speak(utter);
-                t.style.backgroundColor = o.color
+        function next() {
+            if (deck.length == 0) {
+                newDeck()
             }
-            
-        </script>
-    </body>
+            var o = deck.pop()
+            var t = document.getElementById("TheThing")
+            utter.text = getRandomPretext() + o.shapeText
+
+            window.speechSynthesis.speak(utter);
+            t.style.backgroundColor = o.color
+        }
+
+    </script>
+</body>
+
 </html>
