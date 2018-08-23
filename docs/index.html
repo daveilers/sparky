@@ -32,6 +32,7 @@
         </svg>
     </div>
     <script>
+        var synth = window.speechSynthesis;
         var deck = []
         var utter = new SpeechSynthesisUtterance("");
         utter.rate = .80
@@ -76,7 +77,7 @@
             var t = document.getElementById("TheThing")
             utter.text = getRandomPretext() + o.shapeText
 
-            window.speechSynthesis.speak(utter);
+            synth.speak(utter);
             t.style.backgroundColor = o.color
         }
 
